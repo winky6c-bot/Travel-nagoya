@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名古屋聖誕行程小工具 (12/21 - 12/24)</title>
+    <style>
+        :root {
+            --primary-color: #e74c3c; /* 聖誕紅 */
+            --secondary-color: #2c3e50; /* 深藍/灰 */
+            --background-color: #ecf0f1; /* 淺灰背景 */
+            --card-background: #ffffff;
+            --button-hover: #c0392b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .day-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .day-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .day-content {
+            padding: 15px;
+            display: none; /* 預設隱藏 */
+        }
+
+        .day-card.active .day-content {
+            display: block;
+        }
+
+        .activity {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .activity-time {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .activity-name {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .notes {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .nav-btn {
+            background-color: #3498db; /* 導航藍 */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .nav-btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎄 名古屋聖誕行程小工具 🎁</h1>
+
+    <div class="day-card active" id="day1">
+        <div class="day-header" onclick="toggleDay('day1')">
+            <span>📅 Day 1 (12/21) - 名古屋市區</span>
+            <span>⬇️</span>
+        </div>
+        <div class="day-content">
+            <div class="activity">
+                <span class="activity-time">Lunch</span>
+                <span class="activity-name">🍣 Nigiri no Tokube (Oasis 21店)</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF9" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Check-in</span>
+                <span class="activity-name">🏠 Anshin Oyado Premier Nagoya Sakae</span>
+                <span class="notes">安心お宿 Woman&Man 名古屋栄店</span>
+                <a href="https://maps.app.goo.gl/95DqT2Fw7c7E7iVq7" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Afternoon</span>
+                <span class="activity-name">🏯 名古屋城 (Nagoya Castle)</span>
+                <a href="https://maps.app.goo.gl/Vp65w4vD4yT2xR6h6" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Shopping</span>
+                <span class="activity-name">🛍️ Sakae 商業街 (榮商圈)</span>
+                <a href="https://maps.app.goo.gl/9Y8X6hL5zN2fP4w68" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Activity</span>
+                <span class="activity-name">🎁 久屋大通公園 Christmas market</span>
+                <a href="https://maps.app.goo.gl/Fk97xS7eJvG3WwG58" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Dinner</span>
+                <span class="activity-name">鰻魚飯: Hitsumabushi bincho</span>
+                <span class="notes">ひつまぶし 名古屋 備長 ラシック店</span>
+                <a href="https://maps.app.goo.gl/XqL8P5kE2S5XhT1q8" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-card" id="day2">
+        <div class="day-header" onclick="toggleDay('day2')">
+            <span>📅 Day 2 (12/22) - 高山 & 白川鄉一日遊</span>
+            <span>⬇️</span>
+        </div>
+        <div class="day-content">
+            <div class="activity">
+                <span class="activity-time">全日</span>
+                <span class="activity-name">🚌 Klook 高山白川鄉一日遊</span>
+                <span class="notes">集合地點請以 Klook 訂單為準，此為**名古屋站太閣通口**參考定位。約 19:00 返回。</span>
+                <a href="https://maps.app.goo.gl/W9X4G1c1P3rK5A2v7" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航至 名古屋站集合點</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Dinner</span>
+                <span class="activity-name">🐟 柳橋中央市場 dinner</span>
+                <span class="notes">市場內有多間海鮮食肆</span>
+                <a href="https://maps.app.goo.gl/4N2uQ5D7YvD3BwK48" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-card" id="day3">
+        <div class="day-header" onclick="toggleDay('day3')">
+            <span>📅 Day 3 (12/23) - 名古屋市區深度遊</span>
+            <span>⬇️</span>
+        </div>
+        <div class="day-content">
+            <div class="activity">
+                <span class="activity-time">Breakfast</span>
+                <span class="activity-name">☕ Coffee house kako (咖啡屋加古)</span>
+                <a href="https://support.google.com/maps/answer/4610185?hl=zh-Hant&co=GENIE.Platform%3DAndroid" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Lunch</span>
+                <span class="activity-name">🍜 Kikkou Hanare (吉凰はなれ)</span>
+                <span class="notes">11:30 am 已預訂</span>
+                <a href="https://support.google.com/maps/answer/6320846?hl=zh-Hant&co=GENIE.Platform%3DiOS" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Leisure</span>
+                <span class="activity-name">📚 蔦屋書店 (Tsutaya Books)</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF91" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Afternoon</span>
+                <span class="activity-name">⛩️ 熱田神宮 (Atsuta Jingu)</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF92" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Shopping</span>
+                <span class="activity-name">🛍️ 大須商店街 (Osu Shopping Street)</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF93" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Viewpoint</span>
+                <span class="activity-name">🛸 綠洲21 (Oasis 21)</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF94" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Late Night</span>
+                <span class="activity-name">🍻 Uogashisakaba FUKU Hamakin</span>
+                <span class="notes">魚河岸酒場 FUKU浜金 栄住吉店</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF95" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="day-card" id="day4">
+        <div class="day-header" onclick="toggleDay('day4')">
+            <span>📅 Day 4 (12/24) - 聖誕夜尾聲</span>
+            <span>⬇️</span>
+        </div>
+        <div class="day-content">
+            <div class="activity">
+                <span class="activity-time">Breakfast</span>
+                <span class="activity-name">☕ glitch coffee and check out</span>
+                <a href="https://maps.app.goo.gl/CBzQKfRzMsuh1qRF7" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Lunch</span>
+                <span class="activity-name">🥩 Hida Gyu Ittouya Bakuro Ichidai</span>
+                <span class="notes">飛騨牛一頭家 馬喰一代 名古屋栄店, 11:30 am 已預訂</span>
+                <a href="https://maps.app.goo.gl/r5YjLzP2q44x68kF97" target="_blank" class="nav-btn"><span class="icon">🗺️</span>導航</a>
+            </div>
+            <div class="activity">
+                <span class="activity-time">Departure</span>
+                <span class="activity-name">✈️ 前往機場</span>
+                <span class="notes">祝您旅途愉快！</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleDay(dayId) {
+        const card = document.getElementById(dayId);
+        const content = card.querySelector('.day-content');
+        const arrow = card.querySelector('.day-header span:last-child');
+
+        // 檢查當前狀態
+        const isCurrentlyActive = card.classList.contains('active');
+
+        // 關閉所有卡片
+        document.querySelectorAll('.day-card').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.day-header span:last-child').innerHTML = '⬇️';
+        });
+
+        // 如果原本是關閉的，就打開它
+        if (!isCurrentlyActive) {
+            card.classList.add('active');
+            arrow.innerHTML = '⬆️';
+        }
+    }
+
+    // 預設展開 Day 1
+    document.addEventListener('DOMContentLoaded', () => {
+        // 確保 Day 1 是展開的 (已經在 HTML 中設置 active class)
+        const day1Header = document.getElementById('day1').querySelector('.day-header span:last-child');
+        day1Header.innerHTML = '⬆️';
+    });
+</script>
+
+</body>
+</html>
